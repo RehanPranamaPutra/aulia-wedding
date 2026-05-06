@@ -1,26 +1,99 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-maroon: #6B1D2A;
+  --color-maroon-dark: #4A0E1B;
+  --color-maroon-light: #8B2440;
+  --color-gold: #D4A843;
+  --color-gold-light: #E8C872;
+  --color-gold-dark: #B08930;
+  --color-cream: #FDF6EC;
+  --color-cream-dark: #F5E6D0;
+  --color-brown: #3A2118;
+  --color-brown-light: #5C3D2E;
+  --font-heading: var(--font-playfair);
+  --font-body: var(--font-cormorant);
+  --font-script: var(--font-great-vibes);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #FDF6EC;
+  --foreground: #3A2118;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FDF6EC;
+}
+::-webkit-scrollbar-thumb {
+  background: #D4A843;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B08930;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), 'Georgia', serif;
+  overflow-x: hidden;
+}
+
+/* Gold shimmer animation */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    #D4A843 0%,
+    #E8C872 25%,
+    #F5E1A4 50%,
+    #E8C872 75%,
+    #D4A843 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Section divider */
+.section-divider {
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #D4A843,
+    #E8C872,
+    #D4A843,
+    transparent
+  );
+  margin: 0 auto;
+}
+
+/* Arabic text styling */
+.arabic-text {
+  font-family: 'Amiri', 'Traditional Arabic', serif;
+  direction: rtl;
+  line-height: 2.2;
+}
+
+/* Input styling */
+input, textarea, select {
+  font-family: var(--font-body), 'Georgia', serif;
 }
