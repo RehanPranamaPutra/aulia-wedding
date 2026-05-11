@@ -64,7 +64,7 @@ export default function OpeningCover({ onOpen, guestName }: OpeningCoverProps) {
         <div className="relative w-64 md:w-80 shrink-0">
           <div className="oval-frame relative aspect-[4/5] w-full">
             <Image
-              src="/minang-couple.png"
+              src="/minang-couple-v2.png"
               alt="Mona & Hendra"
               fill
               priority

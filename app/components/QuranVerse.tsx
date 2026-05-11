@@ -25,9 +25,14 @@ export default function QuranVerse() {
              </svg>
           </div>
 
-          <p className="arabic-text text-3xl md:text-4xl text-maroon-dark leading-[2.5] drop-shadow-sm">
-            وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ
-          </p>
+          <div className="space-y-6">
+            <p className="arabic-text text-2xl md:text-3xl text-gold-dark">
+              بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
+            </p>
+            <p className="arabic-text text-3xl md:text-4xl text-maroon-dark leading-[2.5] drop-shadow-sm">
+              وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ
+            </p>
+          </div>
           
           <div className="space-y-8">
             <div className="w-12 h-px bg-gold mx-auto" />

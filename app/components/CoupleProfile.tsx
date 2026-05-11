@@ -28,7 +28,7 @@ export default function CoupleProfile() {
             <div className="flex flex-col md:flex-row items-center gap-10 md:gap-20">
               <div className="w-64 md:w-72 arched-frame shadow-2xl relative group">
                 <Image
-                  src="/minang-couple.png" 
+                  src="/minang-couple-v2.png" 
                   alt="Mona Aulia"
                   width={300}
                   height={400}
@@ -57,7 +57,7 @@ export default function CoupleProfile() {
             <div className="flex flex-col md:flex-row-reverse items-center gap-10 md:gap-20">
               <div className="w-64 md:w-72 arched-frame shadow-2xl relative group">
                 <Image
-                  src="/minang-couple.png" 
+                  src="/minang-couple-v2.png" 
                   alt="Mahendra"
                   width={300}
                   height={400}
