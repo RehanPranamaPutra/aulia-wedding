@@ -10,9 +10,9 @@ const events = [
     month: 'MEI',
     year: '2026',
     time: 'Pukul 13.00 WIB',
-    location: 'Masjid Baiturrahman',
-    mapUrl: 'https://www.google.com/maps?q=Masjid+Baiturrahman+Sungai+Sariak&output=embed',
-    googleMapsUrl: 'https://maps.app.goo.gl/1yFJqT8BSdky31cJ6'
+    location: 'Jln. Malai V Suku, Dusun Malai Mudo, Kab. Padang Pariaman',
+    mapUrl: 'https://www.google.com/maps?q=-0.419245,100.056097&output=embed',
+    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=-0.419245,100.056097'
   },
   {
     title: 'Resepsi',
@@ -21,8 +21,8 @@ const events = [
     year: '2026',
     time: 'Pukul 09.00 WIB - Selesai',
     location: 'Jln. Malai V Suku, Dusun Malai Mudo, Kab. Padang Pariaman',
-    mapUrl: 'https://www.google.com/maps?q=-0.5694,100.0882&output=embed',
-    googleMapsUrl: 'https://maps.app.goo.gl/Bch32PcSBugxFCPF8'
+    mapUrl: 'https://www.google.com/maps?q=-0.419245,100.056097&output=embed',
+    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=-0.419245,100.056097'
   },
 ]
 
