@@ -30,7 +30,7 @@ export default function SplashScreen() {
           
           <div className="space-y-2">
             <p className="text-cream/80 font-body tracking-[0.3em] uppercase text-[10px]">
-              Aulia Invitation
+              Mona Invitation
             </p>
             <h1 className="text-4xl font-script text-gold-light gold-shimmer drop-shadow-md">
               Mona & Hendra

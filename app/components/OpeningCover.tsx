@@ -39,10 +39,10 @@ export default function OpeningCover({ onOpen, guestName }: OpeningCoverProps) {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0, y: -100 }}
       transition={{ duration: 1 }}
-      className="fixed inset-0 z-50 flex flex-col items-center justify-between bg-cream overflow-hidden"
+      className="fixed inset-0 z-50 flex flex-col bg-cream overflow-y-auto custom-scrollbar"
     >
       {/* Wavy Top Border */}
-      <div className="w-full h-16 wavy-border relative z-20 flex justify-center pt-2">
+      <div className="w-full h-16 wavy-border shrink-0 relative z-20 flex justify-center pt-2">
          <div className="flex gap-1">
             {[...Array(5)].map((_, i) => (
               <div key={i} className="w-1 h-8 bg-maroon-dark rounded-full opacity-30" />
@@ -51,42 +51,42 @@ export default function OpeningCover({ onOpen, guestName }: OpeningCoverProps) {
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col items-center justify-center w-full px-6 space-y-8 relative z-10">
+      <div className="flex-1 flex flex-col items-center justify-center w-full px-6 py-10 space-y-10 relative z-10 min-h-max">
         
         <div className="text-center space-y-2">
-          <p className="text-xs font-heading tracking-[0.4em] text-maroon uppercase">The Wedding of</p>
-          <h1 className="text-5xl md:text-6xl font-heading text-maroon-dark gold-text-shimmer">
+          <p className="text-[10px] font-heading tracking-[0.5em] text-maroon uppercase opacity-60">The Wedding of</p>
+          <h1 className="text-5xl md:text-7xl font-heading text-maroon-dark gold-text-shimmer leading-tight">
             MONA & HENDRA
           </h1>
         </div>
 
         {/* Oval Frame Image */}
-        <div className="relative w-64 md:w-80">
-          <div className="oval-frame relative">
+        <div className="relative w-64 md:w-80 shrink-0">
+          <div className="oval-frame relative aspect-[4/5] w-full">
             <Image
               src="/minang-couple.png"
               alt="Mona & Hendra"
               fill
               priority
-              sizes="(max-width: 768px) 100vw, 400px"
+              sizes="(max-width: 768px) 256px, 320px"
               className="object-cover object-top"
             />
           </div>
         </div>
 
         {/* Guest Name Pill */}
-        <div className="space-y-3 text-center">
+        <div className="space-y-4 text-center">
           <p className="text-[10px] font-heading uppercase tracking-[0.4em] text-maroon/40">Special to:</p>
-          <div className="bg-white/80 backdrop-blur-sm px-10 py-3 rounded-full shadow-lg border border-gold/30 inline-block">
-            <p className="text-maroon font-heading font-bold text-xl">{guestName}</p>
+          <div className="bg-white/80 backdrop-blur-sm px-10 py-3 rounded-full shadow-xl border border-gold/30 inline-block transform hover:scale-105 transition-transform">
+            <p className="text-maroon font-heading font-bold text-xl md:text-2xl">{guestName}</p>
           </div>
         </div>
 
         {/* Countdown */}
-        <div className="flex gap-6 md:gap-10 py-4">
+        <div className="flex gap-6 md:gap-12 py-4">
           {Object.entries(timeLeft).map(([unit, value]) => (
             <div key={unit} className="text-center relative">
-              <p className="text-3xl md:text-4xl font-heading font-bold text-maroon-dark leading-none drop-shadow-sm">
+              <p className="text-3xl md:text-5xl font-heading font-bold text-maroon-dark leading-none drop-shadow-sm">
                 {value < 10 ? `0${value}` : value}
               </p>
               <p className="text-[9px] md:text-[11px] font-body uppercase tracking-[0.2em] text-gold-dark mt-2 font-bold">
@@ -97,19 +97,21 @@ export default function OpeningCover({ onOpen, guestName }: OpeningCoverProps) {
         </div>
 
         {/* Open Button */}
-        <button
-          onClick={onOpen}
-          className="px-12 py-4 bg-maroon text-cream rounded-full font-heading text-xs tracking-[0.3em] uppercase hover:bg-maroon-dark transition-all shadow-2xl flex items-center gap-3 group border border-gold/30"
-        >
-          <svg className="w-5 h-5 group-hover:animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-          Buka Undangan
-        </button>
+        <div className="pb-10">
+          <button
+            onClick={onOpen}
+            className="px-14 py-4 bg-maroon text-cream rounded-full font-heading text-xs tracking-[0.3em] uppercase hover:bg-maroon-dark transition-all shadow-2xl flex items-center gap-3 group border border-gold/30 active:scale-95"
+          >
+            <svg className="w-5 h-5 group-hover:animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+            Buka Undangan
+          </button>
+        </div>
       </div>
 
       {/* Bottom Rumah Gadang Silhouette */}
-      <div className="w-full h-32 bg-rumah-gadang relative z-0 opacity-50" />
+      <div className="w-full h-32 bg-rumah-gadang shrink-0 relative z-0 opacity-40 mt-auto" />
     </motion.section>
   )
 }
