@@ -14,6 +14,7 @@ import GiftSection from '@/app/components/GiftSection';
 import Footer from '@/app/components/Footer';
 import MusicPlayer from '@/app/components/MusicPlayer';
 import SplashScreen from '@/app/components/SplashScreen';
+import DestinySection from '@/app/components/DestinySection';
 
 export default function WeddingApp() {
   const [isOpen, setIsOpen] = useState(false);
@@ -67,6 +68,7 @@ export default function WeddingApp() {
           <div className="relative z-0">
             <QuranVerse />
             <CoupleProfile />
+            <DestinySection />
             <EventSchedule />
             {/* Gallery diaktifkan kembali dan disesuaikan */}
             {/* <Gallery /> */}
