@@ -54,6 +54,9 @@ export default function OpeningCover({ onOpen, guestName }: OpeningCoverProps) {
       <div className="flex-1 flex flex-col items-center justify-between w-full px-6 pt-4 pb-12 md:py-10 relative z-10">
         
         <div className="text-center space-y-2 shrink-0">
+          <p className="arabic-text text-2xl text-gold-dark mb-4">
+            بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
+          </p>
           <p className="text-[10px] font-heading tracking-[0.5em] text-maroon uppercase opacity-60">The Wedding of</p>
           <h1 className="text-5xl md:text-7xl font-heading text-maroon-dark gold-text-shimmer leading-tight">
             MONA & HENDRA
