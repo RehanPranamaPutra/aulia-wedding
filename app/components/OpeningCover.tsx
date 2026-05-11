@@ -39,19 +39,19 @@ export default function OpeningCover({ onOpen, guestName }: OpeningCoverProps) {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0, y: -100 }}
       transition={{ duration: 1 }}
-      className="fixed inset-0 z-50 flex flex-col bg-cream overflow-y-auto custom-scrollbar"
+      className="fixed inset-0 z-50 flex flex-col bg-cream overflow-hidden"
     >
       {/* Wavy Top Border */}
       <div className="w-full h-16 wavy-border shrink-0 relative z-20 flex justify-center pt-2">
-         <div className="flex gap-1">
-            {[...Array(5)].map((_, i) => (
-              <div key={i} className="w-1 h-8 bg-maroon-dark rounded-full opacity-30" />
-            ))}
-         </div>
+        <div className="flex gap-1">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="w-1 h-8 bg-maroon-dark rounded-full opacity-30" />
+          ))}
+        </div>
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col items-center justify-center w-full px-6 py-10 space-y-10 relative z-10 min-h-max">
+      <div className="flex-1 flex flex-col items-center justify-center w-full px-6 space-y-10 relative z-10">
         
         <div className="text-center space-y-2">
           <p className="text-[10px] font-heading tracking-[0.5em] text-maroon uppercase opacity-60">The Wedding of</p>
@@ -82,36 +82,20 @@ export default function OpeningCover({ onOpen, guestName }: OpeningCoverProps) {
           </div>
         </div>
 
-        {/* Countdown */}
-        <div className="flex gap-6 md:gap-12 py-4">
-          {Object.entries(timeLeft).map(([unit, value]) => (
-            <div key={unit} className="text-center relative">
-              <p className="text-3xl md:text-5xl font-heading font-bold text-maroon-dark leading-none drop-shadow-sm">
-                {value < 10 ? `0${value}` : value}
-              </p>
-              <p className="text-[9px] md:text-[11px] font-body uppercase tracking-[0.2em] text-gold-dark mt-2 font-bold">
-                {unit === 'days' ? 'Hari' : unit === 'hours' ? 'Jam' : unit === 'minutes' ? 'Menit' : 'Detik'}
-              </p>
-            </div>
-          ))}
-        </div>
-
         {/* Open Button */}
-        <div className="pb-10">
-          <button
-            onClick={onOpen}
-            className="px-14 py-4 bg-maroon text-cream rounded-full font-heading text-xs tracking-[0.3em] uppercase hover:bg-maroon-dark transition-all shadow-2xl flex items-center gap-3 group border border-gold/30 active:scale-95"
-          >
-            <svg className="w-5 h-5 group-hover:animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-            Buka Undangan
-          </button>
-        </div>
+        <button
+          onClick={onOpen}
+          className="px-14 py-4 bg-maroon text-cream rounded-full font-heading text-xs tracking-[0.3em] uppercase hover:bg-maroon-dark transition-all shadow-2xl flex items-center gap-3 group border border-gold/30 active:scale-95"
+        >
+          <svg className="w-5 h-5 group-hover:animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+          Buka Undangan
+        </button>
       </div>
 
       {/* Bottom Rumah Gadang Silhouette */}
-      <div className="w-full h-32 bg-rumah-gadang shrink-0 relative z-0 opacity-40 mt-auto" />
+      <div className="absolute bottom-0 w-full h-32 bg-rumah-gadang z-0 opacity-40 pointer-events-none" />
     </motion.section>
   )
 }
