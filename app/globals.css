@@ -5,17 +5,16 @@
   --color-foreground: var(--foreground);
   --color-maroon: #6B1D2A;
   --color-maroon-dark: #4A0E1B;
-  --color-maroon-light: #8B2440;
   --color-gold: #D4A843;
   --color-gold-light: #E8C872;
-  --color-gold-dark: #B08930;
   --color-cream: #FDF6EC;
   --color-cream-dark: #F5E6D0;
   --color-brown: #3A2118;
-  --color-brown-light: #5C3D2E;
-  --font-heading: var(--font-playfair);
-  --font-body: var(--font-cormorant);
-  --font-script: var(--font-great-vibes);
+  
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Cormorant Garamond', serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-accent: 'Playball', cursive;
 }
 
 :root {
@@ -34,9 +33,6 @@
   background: #D4A843;
   border-radius: 3px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #B08930;
-}
 
 html {
   scroll-behavior: smooth;
@@ -45,55 +41,67 @@ html {
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-body), 'Georgia', serif;
+  font-family: var(--font-body), serif;
   overflow-x: hidden;
 }
 
-/* Gold shimmer animation */
-@keyframes shimmer {
+/* Wavy Divider */
+.wavy-border {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113,14.29,1200,52.47V0Z' opacity='.5' fill='%23000'/%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' opacity='.5' fill='%23000'/%3E%3Cpath d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z' fill='%23000'/%3E%3C/svg%3E");
+  mask-repeat: no-repeat;
+  mask-size: cover;
+  background-color: #D4A843;
+}
+
+/* Oval Frame */
+.oval-frame {
+  aspect-ratio: 1 / 1.4;
+  border-radius: 50% / 40%;
+  overflow: hidden;
+  border: 4px solid #D4A843;
+  box-shadow: 0 0 20px rgba(212, 168, 67, 0.4);
+}
+
+/* Arched Frame */
+.arched-frame {
+  border-radius: 500px 500px 0 0;
+  overflow: hidden;
+  border: 3px solid #D4A843;
+}
+
+/* Typography Helpers */
+.font-script { font-family: var(--font-script), cursive; }
+.font-heading { font-family: var(--font-heading), serif; }
+.font-body { font-family: var(--font-body), serif; }
+.font-accent { font-family: var(--font-accent), cursive; }
+
+.text-maroon { color: #6B1D2A; }
+.bg-maroon { background-color: #6B1D2A; }
+.text-gold { color: #D4A843; }
+.bg-gold { background-color: #D4A843; }
+
+/* Shimmer Effect for Gold */
+@keyframes gold-shimmer {
   0% { background-position: -200% center; }
   100% { background-position: 200% center; }
 }
 
-.gold-shimmer {
+.gold-text-shimmer {
   background: linear-gradient(
     90deg,
     #D4A843 0%,
-    #E8C872 25%,
-    #F5E1A4 50%,
-    #E8C872 75%,
+    #FDF6EC 50%,
     #D4A843 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 3s ease-in-out infinite;
+  animation: gold-shimmer 3s linear infinite;
 }
 
-/* Section divider */
-.section-divider {
-  width: 200px;
-  height: 2px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    #D4A843,
-    #E8C872,
-    #D4A843,
-    transparent
-  );
-  margin: 0 auto;
-}
-
-/* Arabic text styling */
-.arabic-text {
-  font-family: 'Amiri', 'Traditional Arabic', serif;
-  direction: rtl;
-  line-height: 2.2;
-}
-
-/* Input styling */
-input, textarea, select {
-  font-family: var(--font-body), 'Georgia', serif;
+/* Rumah Gadang Silhouette overlay */
+.bg-rumah-gadang {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 200' fill='%236B1D2A' opacity='0.1'%3E%3Cpath d='M0 200L50 150L100 200L150 150L200 200L250 150L300 200L350 150L400 200L450 150L500 200L550 150L600 200L650 150L700 200L750 150L800 200L850 150L900 200L950 150L1000 200V100L950 50L900 100L850 50L800 100L750 50L700 100L650 50L600 100L550 50L500 100L450 50L400 100L350 50L300 100L250 50L200 100L150 50L100 100L50 50L0 100Z'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: bottom;
 }

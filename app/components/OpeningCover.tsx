@@ -1,98 +1,115 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { useState, useEffect } from 'react'
 
-export default function OpeningCover({ onOpen, guestName }: { onOpen: () => void; guestName: string }) {
-  const [isOpening, setIsOpening] = useState(false)
+interface OpeningCoverProps {
+  onOpen: () => void
+  guestName: string
+}
 
-  const handleOpen = () => {
-    setIsOpening(true)
-    setTimeout(onOpen, 1500)
-  }
+export default function OpeningCover({ onOpen, guestName }: OpeningCoverProps) {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  })
+
+  useEffect(() => {
+    const targetDate = new Date('2026-05-22T13:00:00').getTime()
+    const interval = setInterval(() => {
+      const now = new Date().getTime()
+      const difference = targetDate - now
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000)
+        })
+      }
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [])
 
   return (
-    <AnimatePresence>
-      {!isOpening ? (
-        <motion.div
-          key="opening"
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0, y: '-100%' }}
-          transition={{ duration: 1.5, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-maroon-dark/90 backdrop-blur-sm"
-        >
-          {/* Top Logo text like in TikTok */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="absolute top-12 text-center w-full z-10"
-          >
-            <p className="text-gold text-xs font-body tracking-[0.3em] uppercase mb-1">Aulia Invitation</p>
-            <p className="text-cream text-sm font-body">Undangan Website</p>
-          </motion.div>
+    <motion.section
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0, y: -100 }}
+      transition={{ duration: 1 }}
+      className="fixed inset-0 z-50 flex flex-col items-center justify-between bg-cream overflow-hidden"
+    >
+      {/* Wavy Top Border */}
+      <div className="w-full h-16 wavy-border relative z-20 flex justify-center pt-2">
+         <div className="flex gap-1">
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="w-1 h-8 bg-maroon-dark rounded-full opacity-30" />
+            ))}
+         </div>
+      </div>
 
-          {/* Archway Frame */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="relative w-10/12 max-w-sm mt-12 bg-maroon rounded-t-full border-[6px] border-gold-light shadow-2xl overflow-hidden aspect-[3/4] flex flex-col items-center justify-end"
-          >
-            {/* The Couple Illustration inside the arch */}
-            <div className="absolute inset-0 flex items-end justify-center">
-              <div className="relative w-full h-[85%]">
-                <Image 
-                  src="/minang-couple.png" 
-                  alt="Mona & Hendra" 
-                  fill 
-                  className="object-contain object-bottom"
-                />
-              </div>
-            </div>
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col items-center justify-center w-full px-6 space-y-8 relative z-10">
+        
+        <div className="text-center space-y-2">
+          <p className="text-xs font-heading tracking-[0.4em] text-maroon uppercase">The Wedding of</p>
+          <h1 className="text-5xl md:text-6xl font-heading text-maroon-dark gold-text-shimmer">
+            MONA & HENDRA
+          </h1>
+        </div>
 
-            {/* Golden gradient overlay at the bottom so text is readable */}
-            <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-maroon-dark via-maroon-dark/80 to-transparent" />
+        {/* Oval Frame Image */}
+        <div className="relative w-64 md:w-80">
+          <div className="oval-frame relative">
+            <Image
+              src="/minang-couple.png"
+              alt="Mona & Hendra"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 400px"
+              className="object-cover object-top"
+            />
+          </div>
+        </div>
 
-            {/* Archway Content */}
-            <div className="relative z-10 text-center pb-8 w-full px-4">
-              <h1 className="text-4xl md:text-5xl text-gold-light font-script mb-2 drop-shadow-md">
-                Mona & Hendra
-              </h1>
-              <p className="text-cream text-xs font-body tracking-[0.2em] uppercase mb-4 opacity-90">
-                22 — 23 Mei 2026
+        {/* Guest Name Pill */}
+        <div className="space-y-3 text-center">
+          <p className="text-[10px] font-heading uppercase tracking-[0.4em] text-maroon/40">Special to:</p>
+          <div className="bg-white/80 backdrop-blur-sm px-10 py-3 rounded-full shadow-lg border border-gold/30 inline-block">
+            <p className="text-maroon font-heading font-bold text-xl">{guestName}</p>
+          </div>
+        </div>
+
+        {/* Countdown */}
+        <div className="flex gap-6 md:gap-10 py-4">
+          {Object.entries(timeLeft).map(([unit, value]) => (
+            <div key={unit} className="text-center relative">
+              <p className="text-3xl md:text-4xl font-heading font-bold text-maroon-dark leading-none drop-shadow-sm">
+                {value < 10 ? `0${value}` : value}
+              </p>
+              <p className="text-[9px] md:text-[11px] font-body uppercase tracking-[0.2em] text-gold-dark mt-2 font-bold">
+                {unit === 'days' ? 'Hari' : unit === 'hours' ? 'Jam' : unit === 'minutes' ? 'Menit' : 'Detik'}
               </p>
             </div>
-          </motion.div>
+          ))}
+        </div>
 
-          {/* Guest name & Open button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className="mt-8 text-center z-10 w-full"
-          >
-            <p className="text-gold/80 text-[10px] tracking-widest uppercase mb-1 font-body">Kepada Yth.</p>
-            <p className="text-cream text-xl font-heading font-bold mb-6">{guestName}</p>
+        {/* Open Button */}
+        <button
+          onClick={onOpen}
+          className="px-12 py-4 bg-maroon text-cream rounded-full font-heading text-xs tracking-[0.3em] uppercase hover:bg-maroon-dark transition-all shadow-2xl flex items-center gap-3 group border border-gold/30"
+        >
+          <svg className="w-5 h-5 group-hover:animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+          Buka Undangan
+        </button>
+      </div>
 
-            <button
-              onClick={handleOpen}
-              className="px-10 py-3 bg-gradient-to-r from-gold-dark via-gold to-gold-dark text-maroon-dark rounded-full font-body text-sm font-bold uppercase tracking-widest hover:brightness-110 transition-all shadow-[0_0_20px_rgba(212,168,67,0.4)]"
-            >
-              Buka Undangan
-            </button>
-          </motion.div>
-        </motion.div>
-      ) : (
-        <motion.div
-          key="transition"
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
-          className="fixed inset-0 z-50 bg-maroon-dark"
-        />
-      )}
-    </AnimatePresence>
+      {/* Bottom Rumah Gadang Silhouette */}
+      <div className="w-full h-32 bg-rumah-gadang relative z-0 opacity-50" />
+    </motion.section>
   )
 }
